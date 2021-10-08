@@ -1,0 +1,6 @@
+{
+    "dev": {
+        "appPort": 1234
+    },
+    "production": {}
+}
