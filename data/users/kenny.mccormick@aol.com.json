@@ -1,0 +1,16 @@
+{
+	"first-name": "Kenny",
+	"last-name": "McCormick",
+	"id": "kenny.mccormick@aol.com",
+	"payment-methods": [
+		{"id": "1", "default" : true},
+		{"id": "2", "default" : false},
+		{"id": "3", "default" : false},
+		{"id": "4", "default" : false}
+	],
+	"trips": [],
+	"password": {
+		"salt": "81dc9bdb52d04dc20036dbd8313ed055",
+		"hash": "2d9d1dcd8600c5240d6300e63b49f1e2"
+	}
+}
