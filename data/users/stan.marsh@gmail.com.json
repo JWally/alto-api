@@ -8,7 +8,6 @@
 		{"id": "3", "default" : false},
 		{"id": "4", "default" : false}
 	],
-	"trips": [],
 	"password": {
 		"salt": "f6208548fd84e3fcde39bd68b7b50f30",
 		"hash": "d2bbfbd398f8d599fd3c06dbe3379727"
