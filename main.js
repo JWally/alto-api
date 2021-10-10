@@ -1,6 +1,49 @@
 // /////////////////////////////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////////////////////////
 // *************************************************************************************************
+// ****************************************   DESCRIPTION    ***************************************
+// *************************************************************************************************
+// /////////////////////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+	The process flow would look like this:
+	
+	1.) The client logs in via the API
+	
+	2.) The API returns user information to the client
+		so that they can create a trip
+		
+	3.) The user tells the API to create a trip
+
+	4.) The API hits services to:
+		- Find a driver
+		- Find a vehicle
+		- Calculate a time-estimate
+		- Calculate a cost-estimate
+		
+	5.) The user can get driver information 
+	
+	6.) The user then MUST update the trip to approve it
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+// /////////////////////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////////////////////////
+// *************************************************************************************************
 // ****************************************      SET UP      ***************************************
 // *************************************************************************************************
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +93,8 @@ app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({"extended": true}));
 
+// rinky-dink error handler (https://expressjs.com/en/guide/error-handling.html)
+app.use(routes.utilities.errorHandler);
 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,20 +129,12 @@ app.use(bodyParser.urlencoded({"extended": true}));
 // -- --------------------------
 // AUTHENTICATION
 // -- --------------------------
-// 
-// Set a signed-cookie 
-// - available payment methods (array of id, and default-or-not)
-// - miscellaneous (mood, whatever)
-app.post("/authentication/:user_id", routes.utilities.validate);
-
-
-// -- --------------------------------------
-// GET USER-TRIP INFORMATION
-// -- --------------------------------------
-//
 // This is where a user "logs in"
 // -- --------------------------------------
+//
+//
 // REQUEST: 
+// - Method: POST
 // - Route: /validate/:user_id
 // - Params: "password"
 //
@@ -106,8 +143,23 @@ app.post("/authentication/:user_id", routes.utilities.validate);
 // - Headers: Signed Cookies that are required
 //	 for each requeset going forward...
 //
+app.post("/authentication/:user_id", routes.utilities.validate);
+
+
+// -- --------------------------------------
+// GET USER INFORMATION
+// -- --------------------------------------
+//
+// REQUEST: 
+// - Method: GET
+// - Route: /users/:user_id
+// - Headers: Cookies
+//
+// RESPONSE:
+// - Body: User Data *less* Password Info
+//
 app.get("/users/:user_id", (req, res) => {
-	routes.utilities.isvalid(req, res, routes.users.get_info);
+	routes.utilities.isvalid(req, res, routes.users.get_info, true);
 });
 
 
@@ -115,15 +167,57 @@ app.get("/users/:user_id", (req, res) => {
 // CREATE TRIP
 // -- --------------------------
 // 
-// In the body of the POST, we need the following from the user
-// - location-from
-// - location-to
-// - passenger-count
-// - payment-method-id
+// REQUEST:
+// - Method: POST
+// - Route: /trips/:user_id
+// - Headers: Cookies
+// - Params: 
+// - - location-to
+// - - location-from
+// - - passenger-count
+// - - payment-method-id
+//
+// RESPONSE:
+// - Body: 
+// - - trip-id
+// - - estimated-time-of-arrival
+// - - estimated-fare
+// - - location-to
+// - - location-from
+// - - passenger-count
+// - - payment-method-id
 
 app.post("/trips/:user_id", function(req, res){
-    res.status(200).send({"message": "eat me"});
-})
+    routes.utilities.isvalid(req, res, routes.trips.create, true);
+});
+
+
+
+// -- --------------------------------------
+// GET DRIVER INFORMATION
+// -- --------------------------------------
+//
+// REQUEST: 
+// - Method: GET
+// - Route: /drivers/:driver_id
+// - Headers: Cookies
+//
+// RESPONSE:
+// - All Driver Data
+//
+app.get("/drivers/:driver_id", (req, res) => {
+	routes.utilities.isvalid(req, res, routes.drivers.get_info);
+});
+
+
+
+
+
+
+
+
+
+
 
 //
 // Fall Through Route - Throw a custom 404 at the user if their method / path don't
