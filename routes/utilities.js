@@ -1,5 +1,14 @@
 var crypto = require("crypto"),
 	that = {"module": this};
+	
+//
+// Error Handler
+//
+exports.errorHandler = function errorHandler (err, req, res, next) {
+  res.status(500)
+  res.render('error', { error: err })
+}
+
 
 //
 // FAIL
@@ -31,19 +40,30 @@ exports.fail = function (req, res, code, txt = "") {
 //
 // TEST IF USER IS LOGGED IN OR NOT
 //
-exports.isvalid = function(req, res, fx_success){
+exports.isvalid = function(req, res, fx_success, user){
 	
 	//
-	// 1.) Look for the signed cookie "user_id"
-	// 2.) Check that that cookie == true
-	// 3.) If either fails; 403
+	// Make sure the user has a "user_id" cookie set
+	// which tells us they have logged in
+	//
+	// Also, if the user paramater is true, check that
+	// user_id given in the URL is the same as what the
+	// user provides via their cookies
 	//
 	
-	console.log(req.signedCookies);
-	
-	
+	// If the user doesn't have a user_id, fail them out outright
 	if(req.signedCookies.user_id){
-		return fx_success(req, res);
+		// If we're checking that the user's cookies match the route; do that logic here
+		if(user == true){
+			if(req.params.user_id !== req.signedCookies.user_id || req.signedCookies.is_admin == true){
+				return that.module.fail(req, res, 403);
+			} else {
+				return fx_success(req, res);			
+			}
+		} else {
+			// We don't care who hits the route as long as they're logged in
+			return fx_success(req, res);
+		}
 	} else {
 		return that.module.fail(req, res, 403);
 	}
@@ -74,6 +94,8 @@ exports.validate = function(req, res){
 	//
 	if(!global.database.users[req.params.user_id]){
 		return that.module.fail(req, res, 404);
+		console.log(req.params.user_id);
+		console.log(global.database.users);
 	} else {
 		//
 		// Make a copy by value of the user so we can manipulate it later
