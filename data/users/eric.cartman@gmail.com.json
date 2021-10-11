@@ -3,10 +3,10 @@
 	"last-name": "Cartman",
 	"id": "eric.cartman@gmail.com",
 	"payment-methods": [
-		{"id": "1", "default" : true},
-		{"id": "2", "default" : false},
-		{"id": "3", "default" : false},
-		{"id": "4", "default" : false}
+		{"id": "1", "default" : true, "alias": "Amex01"},
+		{"id": "2", "default" : false, "alias": "Amex02"},
+		{"id": "3", "default" : false, "alias": "Amex03"},
+		{"id": "4", "default" : false, "alias": "Amex04"}
 	],
 	"password": {
 		"salt": "76bf195e7525e315c4d77473d19e4ccd",
