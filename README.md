@@ -104,11 +104,46 @@ _REQUEST_
 - - user's ID
 - - the time the request was created
 - Method: GET
+- curl -b cookie.txt http://localhost:1234/trip/eric.cartman@gmail.com/1634033634102 (n.b. this time will be different if you try to replicate based on when you create the record)
 
 _RESPONSE_
 - Body: The newly created trip-object / record
 - - which contains the driver's ID and the
 - - vehicle's ID
+
+
+
+### ```/trip/:user_id/:trip_request_time``` ( update trip information )
+
+_REQUEST_
+- Purpose: Update a trip's information with the following:
+- - user's ID
+- - the time the request was created
+- Method: PUT
+- Params: (x-www-form-urlencoded) - for the demo, anything goes. It'll update it or add whatever you supply.
+- curl -b cookie.txt --data-urlencode "vehicle-vibe=old-school" -X PUT http://localhost:1234/trip/eric.cartman@gmail.com/1634033634102
+
+_RESPONSE_
+- Body: The newly updated trip-object / record
+- - which contains the driver's ID and the
+- - vehicle's ID
+
+
+
+### ```/trip/:user_id/:trip_request_time``` ( cancel trip )
+
+_REQUEST_
+- Purpose: Cancel trip data based on the compound-id of
+- - user's ID
+- - the time the request was created
+- Method: DELETE
+- curl -b cookie.txt http://localhost:1234/trip/eric.cartman@gmail.com/1634033634102
+
+_RESPONSE_
+- Body: The newly cancelled trip-object / record
+- - which contains the driver's ID and the
+- - vehicle's ID
+- curl -b cookie.txt -X DELETE http://localhost:1234/trip/eric.cartman@gmail.com/1634033634102
 
 
 # what do I do with it
