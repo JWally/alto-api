@@ -25,8 +25,10 @@ cd into ```alto-api``` and
 npm install
 ```
 
-3. npm start
-this puts the server on nodemon
+3. put the server on a nodemon instance
+```
+npm start
+```
 
 # route listing
 
