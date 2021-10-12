@@ -3,13 +3,13 @@ var utilities = require("./utilities");
 // ********************************************************************
 // GET INFO
 // --------------------------------------------------------------------
-// Return information about the user - 
-// Must be that user or an admin to see...
+// Return information about the vehicle - 
+// Must logged in to see this information...
 //
 // ********************************************************************
 exports.get_info = function (req, res) {
 	try{
-		return res.send(global.gov.get_user(req.params.user_id));
+		return res.send(global.gov.get_vehicle(req.params.vehicle_id));
 	} catch(e){
 		return utilities.fail(req, res, e.code, e.message);
 	}

@@ -1,0 +1,65 @@
+[
+   {
+      "user_id": "stan.marsh@gmail.com",
+      "location-to": "Florida",
+      "location-from": "Texas",
+      "passenger-count": "22",
+      "payment-method": {
+         "id": "1",
+         "default": true,
+         "alias": "Amex01"
+      },
+      "notes": "Take me home tonight! I don't want to let you go 'till you see the light. ",
+      "driver_id": "liane.cartman@ridealto.com",
+      "vehicle_id": "000001",
+      "request_time": 1633989423653,
+      "trip_id": {
+         "request_time": 1633989423653,
+         "user_id": "stan.marsh@gmail.com"
+      },
+      "trip_eta": 1633989728489.2183,
+      "status": "complete",
+      "fare": 10.644587464254718
+   },
+   {
+      "user_id": "stan.marsh@gmail.com",
+      "location-to": "Florida",
+      "location-from": "Texas",
+      "passenger-count": "22",
+      "payment-method": {
+         "id": "1",
+         "default": true,
+         "alias": "Amex01"
+      },
+      "notes": "Take me home tonight! I don't want to let you go 'till you see the light. ",
+      "driver_id": "liane.cartman@ridealto.com",
+      "vehicle_id": "000001",
+      "request_time": 1633990016005,
+      "trip_id": {
+         "request_time": 1633990016005,
+         "user_id": "stan.marsh@gmail.com"
+      },
+      "trip_eta": 1633990317788.28,
+      "status": "complete",
+      "fare": 30.043149978644166
+   },
+   {
+      "user_id": "stan.marsh@gmail.com",
+      "location-to": "Florida",
+      "location-from": "Texas",
+      "passenger-count": "22",
+      "payment-method": {
+         "id": "1",
+         "default": true,
+         "alias": "Amex01"
+      },
+      "notes": "I like cheezy poofs.You like poofy poofs.",
+      "driver_id": "liane.cartman@ridealto.com",
+      "vehicle_id": "000001",
+      "request_time": 1634007817515,
+      "trip_eta": 1635000122882.2258,
+      "status": "cancelled",
+      "fare": 11.184002774274337,
+      "map_url": "https://www.maps.google.com?id=1634008122882.2258"
+   }
+]

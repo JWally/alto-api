@@ -24,9 +24,9 @@ exports.fail = function (req, res, code, txt = "") {
         var msg;
         // Lazy Code Reading
         if (code === 403) {
-            msg = "403 - Forbidden" || txt;
+            msg = txt || "403 - Forbidden";
         } else if (code === 404) {
-            msg = "404 - Resource Not Found" || txt;
+            msg = txt || "404 - Resource Not Found";
         } else {
             msg = code + " " + txt;
         }
@@ -47,7 +47,7 @@ exports.isvalid = function(req, res, fx_success, user){
 	// which tells us they have logged in
 	//
 	// Also, if the user paramater is true, check that
-	// user_id given in the URL is the same as what the
+	// user's "id" given in the URL is the same as what the
 	// user provides via their cookies
 	//
 	
@@ -87,21 +87,15 @@ exports.isvalid = function(req, res, fx_success, user){
 exports.validate = function(req, res){
 	
 	var user = "";
-	
 	//
 	// First, check that the user exists
 	// If not, throw a 404 error
 	//
-	if(!global.database.users[req.params.user_id]){
-		return that.module.fail(req, res, 404);
-		console.log(req.params.user_id);
-		console.log(global.database.users);
-	} else {
-		//
-		// Make a copy by value of the user so we can manipulate it later
-		// not ideal, but for what this is, it works ok
-		//
-		user = JSON.parse(JSON.stringify(global.database.users[req.params.user_id]));
+	
+	try{
+		user = global.gov.get_user(req.params.user_id,true);
+	} catch(e){
+		return that.module.fail(req, res, e.code, e.message);
 	}
 	
 	//

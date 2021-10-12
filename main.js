@@ -75,8 +75,17 @@ var http = require("http"),
                                                             // I can structure code in a way that
                                                             // makes sense to me...
 															
-															
-	global.database = reqdir("./data/", {"recurse": true});
+	
+															// -----------------------------------
+	var gov = require("./class/Governor");					// This is our state manager (get it?!)
+	global.gov = new gov();									// Instantiate it on the global
+	gov = undefined;										// Clean it up locally
+	
+															// -----------------------------------
+	var database = reqdir("./data/", {"recurse": true});	// JSON File DB
+	global.gov.data_base = database;						// Give the governor a db to work with
+	database = undefined;									// Clean up after ourselves
+
 
 
 //
@@ -86,16 +95,12 @@ var app = express();
     
 app.set("port", config[env].appPort);                       // This is the port we listen on
 app.use(cookieParser("Paw-Patrol-Is-On-A-Roll"));           // For "Secure Cookies" this is what's 
-
+															// used
 // parse application/json
 app.use(bodyParser.json());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({"extended": true}));
-
-// rinky-dink error handler (https://expressjs.com/en/guide/error-handling.html)
-app.use(routes.utilities.errorHandler);
-
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,8 +128,10 @@ app.use(routes.utilities.errorHandler);
 //     - Cancel a trip
 //
 //
-// 3.) 
-//
+
+
+
+
 
 // -- --------------------------
 // AUTHENTICATION
@@ -152,14 +159,53 @@ app.post("/authentication/:user_id", routes.utilities.validate);
 //
 // REQUEST: 
 // - Method: GET
-// - Route: /users/:user_id
+// - Route: /user/:user_id
 // - Headers: Cookies
 //
 // RESPONSE:
 // - Body: User Data *less* Password Info
 //
-app.get("/users/:user_id", (req, res) => {
+// PURPOSE:
+// - Method for the client to get info about the user
+//   such as available payment methods, and other historical
+//   information
+//
+app.get("/user/:user_id", (req, res) => {
 	routes.utilities.isvalid(req, res, routes.users.get_info, true);
+});
+
+
+// -- --------------------------------------
+// GET DRIVER INFORMATION
+// -- --------------------------------------
+//
+// REQUEST: 
+// - Method: GET
+// - Route: /driver/:driver_id
+// - Headers: Cookies
+//
+// RESPONSE:
+// - All Driver Data
+//
+app.get("/driver/:driver_id", (req, res) => {
+	routes.utilities.isvalid(req, res, routes.drivers.get_info);
+});
+
+
+// -- --------------------------------------
+// GET VEHICLE INFORMATION
+// -- --------------------------------------
+//
+// REQUEST: 
+// - Method: GET
+// - Route: /vehicle/:vehicle_id
+// - Headers: Cookies
+//
+// RESPONSE:
+// - All Driver Data
+//
+app.get("/vehicle/:vehicle_id", (req, res) => {
+	routes.utilities.isvalid(req, res, routes.vehicles.get_info);
 });
 
 
@@ -169,7 +215,7 @@ app.get("/users/:user_id", (req, res) => {
 // 
 // REQUEST:
 // - Method: POST
-// - Route: /trips/:user_id
+// - Route: /trip/:user_id
 // - Headers: Cookies
 // - Params: 
 // - - location-to
@@ -179,39 +225,65 @@ app.get("/users/:user_id", (req, res) => {
 //
 // RESPONSE:
 // - Body: 
-// - - trip-id
-// - - estimated-time-of-arrival
-// - - estimated-fare
-// - - location-to
-// - - location-from
-// - - passenger-count
-// - - payment-method-id
-
-app.post("/trips/:user_id", function(req, res){
+// - - the trip object / record
+app.post("/trip/:user_id", function(req, res){
     routes.utilities.isvalid(req, res, routes.trips.create, true);
 });
 
 
 
-// -- --------------------------------------
-// GET DRIVER INFORMATION
-// -- --------------------------------------
-//
-// REQUEST: 
+// -- --------------------------
+// GET TRIP
+// -- --------------------------
+// 
+// REQUEST:
 // - Method: GET
-// - Route: /drivers/:driver_id
+// - Route: /trip/:user_id/:trip_request_time
 // - Headers: Cookies
 //
 // RESPONSE:
-// - All Driver Data
-//
-app.get("/drivers/:driver_id", (req, res) => {
-	routes.utilities.isvalid(req, res, routes.drivers.get_info);
+// - Body: 
+// - - the trip record / Object
+app.get("/trip/:user_id/:trip_request_time", function(req, res){
+    routes.utilities.isvalid(req, res, routes.trips.get_info, true);
 });
 
 
 
+// -- --------------------------
+// UPDATE TRIP
+// -- --------------------------
+// 
+// REQUEST:
+// - Method: PUT
+// - Route: /trip/:user_id/:trip_request_time
+// - Headers: Cookies
+// - Body: Whatever you want!
+//
+// RESPONSE:
+// - Body: 
+// - - the trip object / record
+app.put("/trip/:user_id/:trip_request_time", function(req, res){
+    routes.utilities.isvalid(req, res, routes.trips.update, true);
+});
 
+
+// -- --------------------------
+// CANCEL TRIP
+// -- --------------------------
+// 
+// REQUEST:
+// - Method: DELETE
+// - Route: /trip/:user_id/:trip_request_time
+// - Headers: Cookies
+
+//
+// RESPONSE:
+// - Body: 
+// - - the trip object / record
+app.delete("/trip/:user_id/:trip_request_time", function(req, res){
+    routes.utilities.isvalid(req, res, routes.trips.cancel, true);
+});
 
 
 

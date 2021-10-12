@@ -3,10 +3,10 @@
 	"last-name": "McCormick",
 	"id": "kenny.mccormick@aol.com",
 	"payment-methods": [
-		{"id": "1", "default" : true},
-		{"id": "2", "default" : false},
-		{"id": "3", "default" : false},
-		{"id": "4", "default" : false}
+		{"id": "1", "default" : true, "alias": "Amex01"},
+		{"id": "2", "default" : false, "alias": "Amex02"},
+		{"id": "3", "default" : false, "alias": "Amex03"},
+		{"id": "4", "default" : false, "alias": "Amex04"}
 	],
 	"password": {
 		"salt": "81dc9bdb52d04dc20036dbd8313ed055",
