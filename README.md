@@ -12,7 +12,7 @@ quick demo of a node.js API simulating routes a client might use to
 - update info about a trip
 - cancel a trip
 
-# how do I install it
+# how do I install and run it
 
 1. from your command-line / git client:
 ```bash
@@ -24,3 +24,28 @@ cd into ```alto-api``` and
 ```bash
 npm install
 ```
+
+3. npm start
+this puts the server on nodemon
+
+
+# what do I do with it
+
+This is a simulation of what a user might need to CRUD a trip.
+For whatever reason, when I wrote this I had South-Park on the brain,
+so the four user options you have to chose from are:
+
+- eric.cartman@gmail.com
+- stan.marsh@gmail.com
+- kyle.broflovski@gmail.com
+- kenny.mccormick@aol.com
+
+
+__LOG IN__
+To get credentials to move around the API as a user, you need to log-in
+first.
+
+The following route fulfills that function:
+```/authentication/:user_id```
+
+where ```:user_id``` is one of the e-mails listed above (case sensitive)
