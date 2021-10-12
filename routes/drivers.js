@@ -8,9 +8,9 @@ var utilities = require("./utilities");
 //
 // ********************************************************************
 exports.get_info = function (req, res) {
-	if(!global.database.drivers[req.params.driver_id]){
-		return utilities.fail(req, res, 404);
-	} else {
-		return res.status(200).send(global.database.drivers[req.params.driver_id]);
+	try{
+		return res.send(global.gov.get_driver(req.params.driver_id));
+	} catch(e){
+		return utilities.fail(req, res, e.code, e.message);
 	}
 }
