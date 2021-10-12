@@ -61,5 +61,24 @@
       "status": "cancelled",
       "fare": 11.184002774274337,
       "map_url": "https://www.maps.google.com?id=1634008122882.2258"
+   },
+   {
+      "user_id": "eric.cartman@gmail.com",
+      "location-to": "to",
+      "location-from": "here",
+      "passenger-count": "8",
+      "payment-method": {
+         "id": "1",
+         "default": true,
+         "alias": "Amex01"
+      },
+      "driver_id": "liane.cartman@ridealto.com",
+      "vehicle_id": "000001",
+      "request_time": 1634033634102,
+      "trip_eta": 1634033937044.2827,
+      "status": "cancelled",
+      "fare": 6.525866867458974,
+      "map_url": "https://www.maps.google.com?id=1634033937044.2827",
+      "vehicle-vibe": "old-school"
    }
 ]
