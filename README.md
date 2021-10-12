@@ -37,49 +37,44 @@ _REQUEST_
 - Method: POST
 - Params: (x-www-form-urlencoded)
 - - "password" (here it's the user's first name)
+- curl -c cookie.txt --data-urlencode "password=eric" -X POST http://localhost:1234/authentication/eric.cartman@gmail.com
 
 _RESPONSE_
 - Body: User Data *less* password info
 - Headers: Signed cookies required for each request going forward
 
-_CURL_
-```curl -c cookie.txt --data-urlencode "password=eric" -X POST http://localhost:1234/authentication/eric.cartman@gmail.com```
 
 ### ```/user/:user_id``` ( get user data )
 
 _REQUEST_
 - Purpose: Get info about a user so they can create a trip request
 - Method: GET
+- curl -b cookie.txt http://localhost:1234/user/eric.cartman@gmail.com
 
 _RESPONSE_
 - Body: User Data *less* password info
 
-_CURL_
-```curl -b cookie.txt http://localhost:1234/user/eric.cartman@gmail.com ```
 
 ### ```/driver/:driver_id``` ( get driver data )
 
 _REQUEST_
 - Purpose: Get info about a driver (typically as follow up to trip info)
 - Method: GET
+- curl -b cookie.txt http://localhost:1234/driver/lianne.cartman@ridealto.com 
 
 _RESPONSE_
 - Body: All Driver Data
 
-_CURL_
-```curl -b cookie.txt http://localhost:1234/driver/lianne.cartman@ridealto.com ```
 
 ### ```/vehicle/:vehicle_id``` ( get vehicle data )
 
 _REQUEST_
 - Purpose: Get info about a vehicle (typically as follow up to trip info)
 - Method: GET
+- curl -b cookie.txt http://localhost:1234/vehicle/000001
 
 _RESPONSE_
 - Body: All vehicle Data
-
-_CURL_
-```curl -b cookie.txt http://localhost:1234/vehicle/000001 ```
 
 
 ### ```/trip/:user_id``` ( create trip for user )
@@ -92,6 +87,8 @@ _REQUEST_
 - - "location-from"
 - - "passenger-count"
 - - "payment-method-id"
+- curl -b cookie.txt --data-urlencode "location-to=to" --data-urlencode "location-from=here" --data-urlencode "passenger-count=8" --data-urlencode "payment-method=1" -X POST http://localhost:1234/trip/eric.cartman@gmail.com
+ 
 
 _RESPONSE_
 - Body: The newly created trip-object / record
