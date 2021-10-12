@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "e3b414f8-d2e9-4a30-bbfc-d37e66ac7b1c",
+		"name": "drivers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1234/driver/veronica.crabtree@ridealto.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"driver",
+						"veronica.crabtree@ridealto.com"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

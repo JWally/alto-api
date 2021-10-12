@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "fb28ec76-203c-45f1-b462-e187f4935b17",
+		"name": "vehicles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1234/vehicle/000002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"vehicle",
+						"000002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_info-404",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1234/vehicle/000004",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"vehicle",
+						"000004"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

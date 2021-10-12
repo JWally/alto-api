@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "4fec2c33-af06-4213-bf66-80b61ccf3514",
+		"name": "users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1234/user/stan.marsh@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"user",
+						"stan.marsh@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_info-403",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1234/user/eric.cartman@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"user",
+						"eric.cartman@gmail.com"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

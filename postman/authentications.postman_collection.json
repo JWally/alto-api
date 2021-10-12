@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "0811ce51-d8b5-4b94-a6c7-ac918036757a",
+		"name": "authentications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authenticate-pass",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "stan",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1234/authentication/stan.marsh@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"authentication",
+						"stan.marsh@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authenticate-fail-404",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "stan",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1234/authentication/shelly.marsh@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"authentication",
+						"shelly.marsh@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authenticate-fail-403",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "terrance",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1234/authentication/stan.marsh@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"authentication",
+						"stan.marsh@gmail.com"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

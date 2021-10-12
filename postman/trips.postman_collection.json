@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "47495d3a-c5d1-4e86-8185-ae4c06306c77",
+		"name": "trips",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "location-to",
+							"value": "Florida",
+							"type": "text"
+						},
+						{
+							"key": "location-from",
+							"value": "Texas",
+							"type": "text"
+						},
+						{
+							"key": "passenger-count",
+							"value": "22",
+							"type": "text"
+						},
+						{
+							"key": "payment-method",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "notes",
+							"value": "Take me home tonight! I don't want to let you go 'till you see the light. ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1234/trip/stan.marsh@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"trip",
+						"stan.marsh@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_trip",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1234/trip/stan.marsh@gmail.com/1633989423653",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"trip",
+						"stan.marsh@gmail.com",
+						"1633989423653"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "notes",
+							"value": "I like cheezy poofs.You like poofy poofs.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1234/trip/stan.marsh@gmail.com/1634007817515",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"trip",
+						"stan.marsh@gmail.com",
+						"1634007817515"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "notes",
+							"value": "I like cheezy poofs.You like poofy poofs.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1234/trip/stan.marsh@gmail.com/1634007817515",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"trip",
+						"stan.marsh@gmail.com",
+						"1634007817515"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
