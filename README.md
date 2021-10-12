@@ -13,3 +13,14 @@ quick demo of a node.js API simulating routes a client might use to
 - cancel a trip
 
 # how do I install it
+
+1. from your command-line / git client:
+```bash
+git clone https://github.com/JWally/alto-api.git
+```
+
+2. install dependencies
+cd into ```alto-api``` and
+```bash
+npm install
+```
