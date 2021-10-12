@@ -28,6 +28,19 @@ npm install
 3. npm start
 this puts the server on nodemon
 
+# route listing
+
+### ```/validate/:user_id``` ( validate user )
+
+_REQUEST_
+- Purpose: Validate a user and log them in.
+- Method: POST
+- Body: "password" (here it's the user's first name)
+
+_RESPONSE_
+- Body: User Data *less* password info
+- Headers: Signed cookies required for each request going forward
+
 
 # what do I do with it
 
