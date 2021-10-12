@@ -35,11 +35,71 @@ this puts the server on nodemon
 _REQUEST_
 - Purpose: Validate a user and log them in.
 - Method: POST
-- Body: "password" (here it's the user's first name)
+- Params: (x-www-form-urlencoded)
+- - "password" (here it's the user's first name)
 
 _RESPONSE_
 - Body: User Data *less* password info
 - Headers: Signed cookies required for each request going forward
+
+### ```/user/:user_id``` ( user data )
+
+_REQUEST_
+- Purpose: Get info about a user so they can create a trip request
+- Method: GET
+
+_RESPONSE_
+- Body: User Data *less* password info
+
+### ```/driver/:driver_id``` ( driver data )
+
+_REQUEST_
+- Purpose: Get info about a driver (typically as follow up to trip info)
+- Method: GET
+
+_RESPONSE_
+- Body: All Driver Data
+
+### ```/vehicle/:vehicle_id``` ( vehicle data )
+
+_REQUEST_
+- Purpose: Get info about a vehicle (typically as follow up to trip info)
+- Method: GET
+
+_RESPONSE_
+- Body: All vehicle Data
+
+
+### ```/trip/:user_id``` ( create trip for user )
+
+_REQUEST_
+- Purpose: Create a trip for a user.
+- Method: POST
+- Params: (x-www-form-urlencoded)
+- - "location-to"
+- - "location-from"
+- - "passenger-count"
+- - "payment-method-id"
+
+_RESPONSE_
+- Body: The newly created trip-object / record
+-       which contains the driver's ID and the
+-       vehicle's ID
+
+
+
+### ```/trip/:user_id/:trip_request_time``` ( gets trip information )
+
+_REQUEST_
+- Purpose: Gets trip data based on the compound-id of
+- - user's ID
+- - the time the request was created
+- Method: GET
+
+_RESPONSE_
+- Body: The trip-object / record
+-       which contains the driver's ID and the
+-       vehicle's ID
 
 
 # what do I do with it
