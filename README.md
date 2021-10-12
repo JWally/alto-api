@@ -62,7 +62,7 @@ _RESPONSE_
 _REQUEST_
 - Purpose: Get info about a driver (typically as follow up to trip info)
 - Method: GET
-- curl -b cookie.txt http://localhost:1234/driver/lianne.cartman@ridealto.com 
+- curl -b cookie.txt http://localhost:1234/driver/liane.cartman@ridealto.com 
 
 _RESPONSE_
 - Body: All Driver Data
